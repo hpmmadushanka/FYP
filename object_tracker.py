@@ -237,16 +237,14 @@ def main(_argv):
                     x_max.append(coord[track.track_id][i][2])
                     y_max.append(coord[track.track_id][i][3])
 
-            #print(x_min)
-            #print(x_max)
-            #print(y_max)
+            #base - frames series
             base = []
-            #print(coord[track.track_id])
-            #cv2.imwrite("data/video/raw1/image%d.jpg" % tot, a) 
-            if(len(x_min)>=3):
-                for i in range(0,len(x_min)):
-                    base.append(i+1)
             
+            num_of_frames = len(x_min)
+            if(num_of_frames>=3):
+                base = list(range(1,(num_of_frames+1)))
+                #for i in range(0,len(x_min)):
+                    #base.append(i+1)
             
                 model1 = polyfit(base,x_min,1)
                 predict_x_min = poly1d(model1)
@@ -303,9 +301,9 @@ def main(_argv):
                         dim = xmin + ","+ xmax + "," + ymin + "," +ymax
                         
 
-                        os.system("python eval1.py --trained_model=weights/yolact_base_54_800000.pth --score_threshold=0.15 --top_k=15 --image=" + input_image+ ":" +output_image  +" --dimension=" +dim)
-                        #os.system("python eval1.py --trained_model=weights/yolact_base_54_800000.pth --score_threshold=0.15 --top_k=15 --image=car2.jpg")
-                        #os.system("python eval1.py --trained_model=weights/yolact_base_54_800000.pth --score_threshold=0.15 --top_k=15 --image=car2.jpg:output2.jpg")
+                        os.system("python segment.py --trained_model=weights/yolact_base_54_800000.pth --score_threshold=0.15 --top_k=15 --image=" + input_image+ ":" +output_image  +" --dimension=" +dim)
+                        #os.system("python segment.py --trained_model=weights/yolact_base_54_800000.pth --score_threshold=0.15 --top_k=15 --image=car2.jpg")
+                        #os.system("python segment.py --trained_model=weights/yolact_base_54_800000.pth --score_threshold=0.15 --top_k=15 --image=car2.jpg:output2.jpg")
                         #crop_img = img[y:y+h, x:x+w]
                         #cv2.imshow("cropped", crop_img) 
                         #cv2.waitKey(0)

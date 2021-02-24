@@ -44,4 +44,5 @@ We get the markings of the most dangerous vehicles using ML as shown in the belo
 
 ![](images/001.jpg)
 
+python object_tracker.py --video ./inputs/youcut (1).mp4 --output ./results/result.avi
 
